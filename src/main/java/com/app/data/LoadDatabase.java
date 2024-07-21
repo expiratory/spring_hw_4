@@ -6,10 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import com.app.customer.Customer;
 import com.app.customer.CustomerRepository;
 
+import javax.transaction.Transactional;
+
 @Configuration
 public class LoadDatabase {
 
     @Bean
+    @Transactional
     CommandLineRunner initDatabase(CustomerRepository customerRepository) {
         return args -> {
             customerRepository.save(new Customer("Имя1", "email1@example.com"));
